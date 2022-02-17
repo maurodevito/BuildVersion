@@ -12,10 +12,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: File contents
-        run: |
-          lastVersion = $(cat BuildVersion.txt)
-          echo "FINE"
+ - name: Assign release version from version.properties to Env variable
+   run: |
+      cat build/version.properties >> $GITHUB_ENV
+
+
+      
 
 # https://github.com/marketplace/actions/file-reader
 
