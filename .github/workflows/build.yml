@@ -8,14 +8,14 @@ jobs:
   file_contents:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
       - name: Read file contents
+      - uses: actions/checkout@v1
         id: read_file
         with:
           path: "package.json"
 
       - name: File contents
+      - uses: actions/checkout@v2      
         run: echo "${ steps.read_file.outputs.contents }"
 
 
