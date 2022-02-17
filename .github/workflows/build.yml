@@ -19,7 +19,9 @@ jobs:
           path: "BuildVersion.txt"
 
       - name: File contents
-        run: echo "${ steps.read_file.outputs }"
+        run: |
+          echo "INIZIO"
+          echo "FINE"
 
 
 # https://github.com/marketplace/actions/file-reader
