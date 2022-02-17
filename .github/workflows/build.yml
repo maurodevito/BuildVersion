@@ -1,0 +1,23 @@
+on: # Controls when the workflow will run
+  push:
+    branches:
+      - master
+
+jobs: # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+  
+  build:
+    runs-on: macOS-latest   # The type of runner that the job will run on
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create BuildVersion.txt file
+        run: |
+          echo "${{ github.run_number }}" > BuildVersion.txt
+
+          git config --global user.name 'maurodevitopix4d'
+          git config --global user.email 'mauro.devito@pix4d.com'          
+          git add BuildVersion.txt
+          git commit -am "Version ${{ github.run_number }} added on BuildVersion.txt"
+          git push
+        shell: bash
