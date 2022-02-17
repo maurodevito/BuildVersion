@@ -19,7 +19,7 @@ jobs:
           path: "BuildVersion.txt"
 
       - name: File contents
-        run: echo ""${{ steps.read_file.outputs.contents }}"
+        run: echo "${{ steps.read_file.outputs.contents }}"
 
 
 # https://github.com/marketplace/actions/file-reader
