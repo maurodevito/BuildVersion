@@ -8,20 +8,28 @@ jobs: # A workflow run is made up of one or more jobs that can run sequentially 
   build:
     runs-on: macOS-latest   # The type of runner that the job will run on
 
-steps:
- - name: Read branch.properties
-        id: version
-        uses: actions/checkout@v1
-        with:
-          path: ./BuildVersion.txt
-
- - name: Assign release version from BuildVersion.txt to Env variable
+    steps:
+      - uses: actions/checkout@v1
+      - name: Read version from BuildVersion.txt file
         run: |
-           echo "${{ steps.version.outputs.content }}" >> $GITHUB_ENV          
+          cat ./BuildVersion.txt >> $GITHUB_ENV
+          echo " versionNumber is: ${{ GITHUB_ENV }}"
+        shell: bash
+
+#steps:
+# - name: Read branch.properties
+#        id: version
+#        uses: actions/checkout@v1
+#        with:
+#          path: ./BuildVersion.txt
+
+ #- name: Assign release version from BuildVersion.txt to Env variable
+ #       run: |
+ #          echo "${{ steps.version.outputs.content }}" >> $GITHUB_ENV          
           
-  - name: Echo release version from  Env variable
-         run: |
-            echo "${{ env.release_version }}"
+ # - name: Echo release version from  Env variable
+ #        run: |
+ #           echo "${{ env.release_version }}"
 
 
     # Steps represent a sequence of tasks that will be executed as part of the job
