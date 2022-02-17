@@ -28,6 +28,14 @@ jobs:
         run: |
           echo $(($NUM+200))
 
+      - name: Use the yyy
+        id: step_d
+        env:  
+          VER:  ${{ github.run_number }}
+        run: |
+          echo $(($VER+200))
+
+
 #      - name: run number with offset
 #        env:
 #          NUM: ${{ github.run_number }}
