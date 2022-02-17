@@ -34,7 +34,7 @@ jobs:
           VER:  ${{ github.run_number }}
         run: |
           echo $(($VER+200))
-          echo $((${{ env.version }}+200))
+          echo $((${{ env.version }}+$VER))
 
 
 #      - name: run number with offset
