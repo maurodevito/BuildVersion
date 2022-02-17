@@ -13,11 +13,11 @@ jobs: # A workflow run is made up of one or more jobs that can run sequentially 
       - name: Set the value
         id: step_one
         run: |
-          cat BuildVersion.txt >>  $GITHUB_ENV
-      - name: Use the value
-        id: step_two
-        run: |
-          echo "${{  $GITHUB_ENV }}" # This will output 'yellow'
+          cat build/version.properties >> $GITHUB_ENV
+#      - name: Use the value
+#        id: step_two
+#        run: |
+#          echo "${{  $GITHUB_ENV }}" # This will output 'yellow'
 
 
 #    steps:
