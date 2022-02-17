@@ -9,6 +9,9 @@ jobs:
   file_contents:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Read file
         id: step_a
         run: cat BuildVersion.txt >> $GITHUB_ENV
