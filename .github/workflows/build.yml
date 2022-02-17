@@ -6,24 +6,15 @@ on: # Controls when the workflow will run
       - master
 
  jobs:
-#   file_contents:
+   file_contents:
      runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
+     steps:
+       - name: Checkout code
+         uses: actions/checkout@v2
 
-#       - name: Assign release version from version.properties to Env variable
-#         run: cat BuildVersion.txt > $GITHUB_ENV
+       - name: Assign release version from version.properties to Env variable
+         run: cat BuildVersion.txt > $GITHUB_ENV
 
-    steps:
-      - name: Set the value
-        id: step_one
-        run: |
-          echo "action_state=yellow" >> $GITHUB_ENV
-      - name: Use the value
-        id: step_two
-        run: |
-          echo "${{ env.action_state }}" # This will output 'yellow'
 
 
 # https://github.com/marketplace/actions/file-reader
