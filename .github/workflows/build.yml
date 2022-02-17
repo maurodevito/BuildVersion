@@ -8,8 +8,11 @@ jobs:
   file_contents:
     runs-on: ubuntu-latest
     steps:
-      - name: Read file contents
+      - name: Checkout code
         uses: actions/checkout@v1
+
+      - name: Read file contents
+        uses: actions/checkout@v2
         id: read_file
         with:
           path: "package.json"
