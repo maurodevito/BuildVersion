@@ -3,21 +3,21 @@ on: # Controls when the workflow will run
     branches:
       - master
 
-jobs: # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-  
-  build:
-    runs-on: macOS-latest   # The type of runner that the job will run on
-
-
+jobs:
+  file_contents:
+    runs-on: ubuntu-latest
     steps:
-      - name: Set the value
-        id: step_one
-        run: |
-          cat "BuildVersion.txt" >> $GITHUB_ENV
-#      - name: Use the value
-#        id: step_two
-#        run: |
-#          echo "${{  $GITHUB_ENV }}" # This will output 'yellow'
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Read file contents
+        id: read_file
+        uses: maurodevito/file-reader-action@v1
+        with:
+          path: "BuildVersion.txt"
+
+      - name: File contents
+        run: echo "${ steps.read_file.outputs.contents }"
 
 
 #    steps:
