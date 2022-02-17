@@ -14,13 +14,8 @@ jobs:
 
       - name: File contents
         run: |
-          cat BuildVersion.txt > xxx.txt
+          lastVersion = $(cat BuildVersion.txt)
           echo "FINE"
-          git config --global user.name 'maurodevitopix4d'
-          git config --global user.email 'mauro.devito@pix4d.com'          
-          git add .
-          git commit -am "Version ${{ github.run_number }} added on BuildVersion.txt"
-          git push
 
 # https://github.com/marketplace/actions/file-reader
 
