@@ -21,12 +21,17 @@ jobs:
         run: |
           echo "${{ env.version }}"
 
-      - name: run number with offset
-        env:
-          NUM: ${{ github.run_number }}
+      - name: Use the xxx
+        id: step_c
         run: |
-          echo ::set-env name=GITHUB_RUN_NUMBER_WITH_OFFSET::$(($NUM+200))
-      - run: echo $GITHUB_RUN_NUMBER_WITH_OFFSET
+          echo "pippo"
+
+#      - name: run number with offset
+#        env:
+#          NUM: ${{ github.run_number }}
+#        run: |
+#          echo ::set-env name=GITHUB_RUN_NUMBER_WITH_OFFSET::$(($NUM+200))
+#      - run: echo $GITHUB_RUN_NUMBER_WITH_OFFSET
 
 
 #      env:
