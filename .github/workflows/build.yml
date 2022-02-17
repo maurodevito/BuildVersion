@@ -26,7 +26,7 @@ jobs:
         env:  
           NUM: ${{ env.version }}
         run: |
-          echo "pippo $NUM pluto"
+          echo $NUM
 
 #      - name: run number with offset
 #        env:
