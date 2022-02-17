@@ -15,7 +15,6 @@ jobs:
           path: "package.json"
 
       - name: File contents
-        uses: actions/checkout@v2      
         run: echo "${ steps.read_file.outputs.contents }"
 
 
