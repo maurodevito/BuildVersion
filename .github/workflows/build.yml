@@ -33,7 +33,7 @@ jobs:
         env:  
           VER:  ${{ github.run_number }}
         run: |
-          echo ${ steps.step_c.NUM }
+          echo $(($NUM+200))
 
 
 #      - name: run number with offset
