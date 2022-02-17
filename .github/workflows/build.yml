@@ -14,7 +14,7 @@ jobs:
 
       - name: File contents
         run: |
-          echo "pippo"
+          cat BuildVersion.txt > xxx.txt
           echo "FINE"
 
 # https://github.com/marketplace/actions/file-reader
