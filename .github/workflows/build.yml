@@ -13,7 +13,7 @@ jobs: # A workflow run is made up of one or more jobs that can run sequentially 
       - name: Set the value
         id: step_one
         run: |
-          cat BuildVersion.txt >> $GITHUB_ENV
+          cat ./BuildVersion.txt >> $GITHUB_ENV
 #      - name: Use the value
 #        id: step_two
 #        run: |
