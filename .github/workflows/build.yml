@@ -9,11 +9,12 @@ jobs:
   file_contents:
     runs-on: ubuntu-latest
     steps:
+
       - name: Read file contents
         id: read_file
         uses: actions/checkout@v1
         with:
-          path: "BuildVersion.txt"
+          path: ./BuildVersion.txt
 
       - name: File contents
         run: |
