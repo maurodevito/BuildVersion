@@ -18,19 +18,8 @@ jobs:
 
       - name: Use the value
         id: step_b
-        run: |
-          echo "${{ env.version }}"
-
-      - name: Use the xxx
-        id: step_c
         env:  
-          NUM: ${{ env.version }}
-        run: |
-          echo $(($NUM+200))
-
-      - name: Use the yyy
-        id: step_d
-        env:  
-          VER:  ${{ github.run_number }}
+          VER:  ${{ github.run_number }}        
         run: |
           echo $((${{ env.version }}+$VER))
+
