@@ -23,7 +23,7 @@ jobs:
 
 
       - name: Use the value
-        id: step_two
+        id: step_tree
         run: |
           echo "${{ env.version }}"
 
