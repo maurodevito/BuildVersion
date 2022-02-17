@@ -9,15 +9,12 @@ jobs:
   file_contents:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Read file
-        id: step_one      
+        id: step_a
         run: cat BuildVersion.txt >> $GITHUB_ENV
 
       - name: Use the value
-        id: step_two
+        id: step_b
         run: |
           echo "${{ env.version }}"
 
