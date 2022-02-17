@@ -8,16 +8,26 @@ jobs: # A workflow run is made up of one or more jobs that can run sequentially 
   build:
     runs-on: macOS-latest   # The type of runner that the job will run on
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - uses: actions/checkout@v2
-      - name: Create BuildVersion.txt file
-        run: |
-          echo "${{ github.run_number }}" > BuildVersion.txt
+steps:
+  - name: Read BuildVersion.txt
+    id: build
+    uses: actions/checkout@v2
+    with:
+      path: ./BuildVersion.txt
+  - name: Echo BuildVersion.txt
+    run: echo "${{ steps.build.outputs.content }}"
 
-          git config --global user.name 'maurodevitopix4d'
-          git config --global user.email 'mauro.devito@pix4d.com'          
-          git add BuildVersion.txt
-          git commit -am "Version ${{ github.run_number }} added on BuildVersion.txt"
-          git push
-        shell: bash
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: Create BuildVersion.txt file
+#        run: |
+#          echo "${{ github.run_number }}" > BuildVersion.txt
+#
+#          git config --global user.name 'maurodevitopix4d'
+#          git config --global user.email 'mauro.devito@pix4d.com'          
+#          git add BuildVersion.txt
+#          git commit -am "Version ${{ github.run_number }} added on BuildVersion.txt"
+#          git push
+#        shell: bash
