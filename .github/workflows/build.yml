@@ -25,7 +25,7 @@ jobs:
         id: step_c
         env:  
           NUM: ${{ env.version }}
-        env: 
+        xyz: 
           AAA: 5
         run: |
           echo $(($NUM+200))
