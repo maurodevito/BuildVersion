@@ -23,6 +23,8 @@ jobs:
 
       - name: Use the xxx
         id: step_c
+        env:  
+          NUM: ${{ env.version }}
         run: |
           echo "pippo"
 
