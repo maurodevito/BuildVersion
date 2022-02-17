@@ -12,7 +12,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Assign release version from version.properties to Env variable
+      - name: Read file
+        id: step_one      
         run: cat BuildVersion.txt >> $GITHUB_ENV
 
 
