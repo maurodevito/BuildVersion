@@ -21,8 +21,14 @@ jobs:
         run: |
           echo "${{ env.version }}"
 
-#      - name: put value in a num
-#        id: step_tree
+    - name: run number with offset
+      env:
+          NUM: ${{ github.run_number }}
+      run: |
+          echo ::set-env name=GITHUB_RUN_NUMBER_WITH_OFFSET::$(($NUM+200))
+    - run: echo $GITHUB_RUN_NUMBER_WITH_OFFSET
+
+
 #      env:
 #          NUM: ${{ github.run_number }}
 #      run: |
