@@ -14,7 +14,7 @@ jobs:
 
       - name: File contents
         run: |
-          echo "pippo" > ${ myVar }
+          echo "pippo"
           echo "FINE"
 
 # https://github.com/marketplace/actions/file-reader
