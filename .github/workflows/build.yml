@@ -12,7 +12,7 @@ jobs: # A workflow run is made up of one or more jobs that can run sequentially 
       - uses: actions/checkout@v1
       - name: Read version from BuildVersion.txt file
         run: |
-          cat ./BuildVersion.txt >> $GITHUB_ENV
+          cat ./BuildVersion.txt >> ${{ GITHUB_ENV }}
           echo " versionNumber is: ${{ GITHUB_ENV }}"
         shell: bash
 
