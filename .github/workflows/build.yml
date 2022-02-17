@@ -19,7 +19,7 @@ jobs:
       - name: Use the value
         id: step_two
         run: |
-          echo "${{ env.version }}"
+          echo "${{ env.version }}+1"
 
 # https://github.com/marketplace/actions/file-reader
 
