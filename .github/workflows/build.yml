@@ -5,9 +5,9 @@ on: # Controls when the workflow will run
     branches:
       - master
 
-# jobs:
+ jobs:
 #   file_contents:
-#     runs-on: ubuntu-latest
+     runs-on: ubuntu-latest
 #     steps:
 #       - name: Checkout code
 #         uses: actions/checkout@v2
@@ -15,7 +15,6 @@ on: # Controls when the workflow will run
 #       - name: Assign release version from version.properties to Env variable
 #         run: cat BuildVersion.txt > $GITHUB_ENV
 
-  runs-on: ubuntu-latest
     steps:
       - name: Set the value
         id: step_one
