@@ -21,12 +21,6 @@ jobs:
         run: |
           echo "${{ env.version }}"
 
-
-      - name: Use the value
-        id: step_tree
-        run: |
-          echo "${{ env.version }}"
-
 # https://github.com/marketplace/actions/file-reader
 
 # jobs:
