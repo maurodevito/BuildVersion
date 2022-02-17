@@ -21,12 +21,12 @@ jobs:
         run: |
           echo "${{ env.version }}"
 
-      - name: put value in a num
-        id: step_tree
-      env:
-          NUM: ${{ github.run_number }}
-      run: |
-          echo ::set-env name=GITHUB_RUN_NUMBER_WITH_OFFSET::$(($NUM+200))          
+#      - name: put value in a num
+#        id: step_tree
+#      env:
+#          NUM: ${{ github.run_number }}
+#      run: |
+#          echo ::set-env name=GITHUB_RUN_NUMBER_WITH_OFFSET::$(($NUM+200))          
 
 # https://github.com/marketplace/actions/file-reader
 
