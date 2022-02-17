@@ -1,2 +1,2 @@
-xxxyyy
+version=xxxyyy
 
