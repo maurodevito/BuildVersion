@@ -12,7 +12,7 @@ jobs:
 
       - name: Read file contents
         id: read_file
-        uses: actions/checkout@v1
+        uses: maurodevito/file-reader-action@v1
         with:
           path: "BuildVersion.txt"
 
