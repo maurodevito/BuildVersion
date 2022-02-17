@@ -10,22 +10,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v1
-
-      - name: Read file contents
-        id: read_file
-        uses: maurodevito/BuildVersion@master
-        with:
-          path: "BuildVersion.txt"
+        uses: actions/checkout@v2
 
       - name: File contents
         run: |
-          echo "INIZIO"
-          echo "${ steps.read_file.outputs }"
+          echo "pippo" > ${ myVar }
           echo "FINE"
 
-
 # https://github.com/marketplace/actions/file-reader
+
+# jobs:
+#   file_contents:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: maurodevito/checkout@v1
+
+#       - name: Read file contents
+#         id: read_file
+#         uses: maurodevito/BuildVersion@master
+#         with:
+#           path: "BuildVersion.txt"
+
+#       - name: File contents
+#         run: |
+#           echo "INIZIO"
+#           echo "${ steps.read_file.outputs }"
+#           echo "FINE"
+
+
+
 
 #    steps:
 #      - name: Set the value
