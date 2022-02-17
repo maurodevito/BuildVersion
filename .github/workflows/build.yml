@@ -20,7 +20,7 @@ jobs:
         id: step_two
         run: |
           echo "${{ env.version }}+1"
-          echo ${{ env.version }}+1
+          echo $(({{ env.version }}+1))
           echo $((5+1))
 
 # https://github.com/marketplace/actions/file-reader
