@@ -12,20 +12,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-        # ManualVersion = Last Manual_Build_Version set manually (eg: TestFlight build) and/or Initial_Offset
-      - name: Read ManualVersion from file
+      - name: Read ConfigVersion from file
         id: step_a
-        run: cat ManualVersion.txt >> $GITHUB_ENV 
+        run: cat ConfigVersion.txt >> $GITHUB_ENV 
 
-    if: ${{ env.ManualBuildVersion }} >= ${{ env.AutomaticBuildVersion }}
-    steps:
-      - name: Write new version on BuildVersion.txt from last manual
-        id: step_inc_a
+      - name: Write new version on ConfigVersion.txt
+        id: step_b
         run: |
-          echo "Version ${{ env.AppVersion }} - ($((${{ env.ManualBuildVersion }}+1)))"
+          echo "Version ${{ env.AppVersion }} - ($((${{ env.BuildVersion }}+1)))"
           echo "AppVersion=${{ env.AppVersion }}"
-          echo "AutomaticBuildVersion=$((${{ env.ManualBuildVersion }}+1))"
-          echo "ManualBuildVersion=${{ env.ManualBuildVersion }}"          
+          echo "BuildVersion=$((${{ env.BuildVersion }}+1))"
+  
 
 
 #    if: ${{ env.ManualBuildVersion }} < ${{ env.AutomaticBuildVersion }}
