@@ -21,20 +21,15 @@ jobs:
       if: ${{ env.ManualBuildVersion }} >= ${{ env.AutomaticBuildVersion }}
       - name: Write new version on BuildVersion.txt from last manual
         id: step_inc_a
-        env:  
-          VER:  ${{ github.run_number }}        
         run: |
           echo "Version ${{ env.AppVersion }} - ($((${{ env.ManualBuildVersion }}+1)))"
           echo "AppVersion=${{ env.AppVersion }}"
           echo "AutomaticBuildVersion=$((${{ env.ManualBuildVersion }}+1))"
-          echo "ManualBuildVersion=${{ env.ManualBuildVersion }}"
-          
+          echo "ManualBuildVersion=${{ env.ManualBuildVersion }}"          
 
       if: ${{ env.ManualBuildVersion }} < ${{ env.AutomaticBuildVersion }}
       - name: Write new version on BuildVersion.txt from last automatic
         id: step_inc_b
-        env:  
-          VER:  ${{ github.run_number }}        
         run: |
           echo "Version ${{ env.AppVersion }} - ($((${{ env.AutomaticBuildVersion }}+1)))"
           echo "AppVersion=${{ env.AppVersion }}"
