@@ -31,11 +31,7 @@ jobs:
         run: |
           echo "Version ${{ env.AppVersion }} - ($((${{ env.ManualBuildVersion }}+$VER)))"
           echo "AppVersion=${{ env.AppVersion }}"
- 
- #
- 
- #         echo "AppVersion=${{ env.AppVersion }}"
- #         echo "AutomaticBuildVersion=$((${{ env.ManualBuildVersion }}+$VER))"
+          echo "AutomaticBuildVersion=$((${{ env.ManualBuildVersion }}+$VER))"
           
 
 #echo "ManualBuildVersion=${{ env.ManualBuildVersion }}""
