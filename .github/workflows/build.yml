@@ -32,7 +32,7 @@ jobs:
           echo "Version ${{ env.AppVersion }} - ($((${{ env.ManualBuildVersion }}+$VER)))"
           echo "AppVersion=${{ env.AppVersion }}"
           echo "AutomaticBuildVersion=$((${{ env.ManualBuildVersion }}+$VER))"
-          echo "ManualBuildVersion=${{ env.ManualBuildVersion }}""
+          echo "ManualBuildVersion=${{ env.ManualBuildVersion }}"
           
 
 #echo "ManualBuildVersion=${{ env.ManualBuildVersion }}""
