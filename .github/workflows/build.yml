@@ -19,10 +19,10 @@ jobs:
         run: cat ManualVersion.txt >> $GITHUB_ENV 
 
 
-        # BuildVersion = the last BuildVersion automatically calculated (considering the ManualVersion off-set)
-      - name: Read BuildVersion from file
-        id: step_a
-        run: cat BuildVersion.txt >> $GITHUB_ENV 
+#        # BuildVersion = the last BuildVersion automatically calculated (considering the ManualVersion off-set)
+#      - name: Read BuildVersion from file
+#        id: step_a
+#        run: cat BuildVersion.txt >> $GITHUB_ENV 
 
         # BuildVersion = New BuildVersion user as Build number
       - name: Write new version on BuildVersion.txt
