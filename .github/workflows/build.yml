@@ -30,10 +30,16 @@ jobs:
           VER:  ${{ github.run_number }}        
         run: |
           echo "Version ${{ env.AppVersion }} - $((${{ env.ManualBuildVersion }}+$VER))"
-          echo "Version ${{ env.AppVersion }} - Build Number: ($((${{ env.version }}+$VER)))"
-          echo "AppVersion=${{ env.AppVersion }}"
-          echo "AutomaticBuildVersion=$((${{ env.ManualBuildVersion }}+$VER))"
-          echo "ManualBuildVersion=${{ env.ManualBuildVersion }}""
+ 
+ 
+ 
+ #
+ #         echo "Version ${{ env.AppVersion }} - Build Number: ($((${{ env.version }}+$VER)))"
+ #         echo "AppVersion=${{ env.AppVersion }}"
+ #         echo "AutomaticBuildVersion=$((${{ env.ManualBuildVersion }}+$VER))"
+          
+
+#echo "ManualBuildVersion=${{ env.ManualBuildVersion }}""
 
 #AppVersion=1.12.0
 #AutomaticBuildVersion=20
