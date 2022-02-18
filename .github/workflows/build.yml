@@ -1,10 +1,9 @@
 name: "Increment build number"
 
 on: # Controls when the workflow will run
-  pull_request:
+  push:
     branches:
-      - '**'
-    types: [closed]
+      - master
 
 jobs:
   file_contents:
@@ -18,6 +17,12 @@ jobs:
       - name: Read ManualVersion from file
         id: step_a
         run: cat ManualVersion.txt >> $GITHUB_ENV 
+
+
+        # BuildVersion = the last BuildVersion automatically calculated (considering the ManualVersion off-set)
+      - name: Read BuildVersion from file
+        id: step_a
+        run: cat BuildVersion.txt >> $GITHUB_ENV 
 
         # BuildVersion = New BuildVersion user as Build number
       - name: Write new version on BuildVersion.txt
