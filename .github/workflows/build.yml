@@ -28,23 +28,23 @@ jobs:
           echo "ManualBuildVersion=${{ env.ManualBuildVersion }}"          
 
 
-    if: ${{ env.ManualBuildVersion }} < ${{ env.AutomaticBuildVersion }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+#    if: ${{ env.ManualBuildVersion }} < ${{ env.AutomaticBuildVersion }}
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
 
         # ManualVersion = Last Manual_Build_Version set manually (eg: TestFlight build) and/or Initial_Offset
-      - name: Read ManualVersion from file
-        id: step_a
-        run: cat ManualVersion.txt >> $GITHUB_ENV 
+#      - name: Read ManualVersion from file
+#        id: step_a
+#        run: cat ManualVersion.txt >> $GITHUB_ENV 
 
-      - name: Write new version on BuildVersion.txt from last automatic
-        id: step_inc_b
-        run: |
-          echo "Version ${{ env.AppVersion }} - ($((${{ env.AutomaticBuildVersion }}+1)))"
-          echo "AppVersion=${{ env.AppVersion }}"
-          echo "AutomaticBuildVersion=$((${{ env.AutomaticBuildVersion }}+1))"
-          echo "ManualBuildVersion=${{ env.ManualBuildVersion }}"
+#      - name: Write new version on BuildVersion.txt from last automatic
+#        id: step_inc_b
+#        run: |
+#          echo "Version ${{ env.AppVersion }} - ($((${{ env.AutomaticBuildVersion }}+1)))"
+#          echo "AppVersion=${{ env.AppVersion }}"
+#          echo "AutomaticBuildVersion=$((${{ env.AutomaticBuildVersion }}+1))"
+#          echo "ManualBuildVersion=${{ env.ManualBuildVersion }}"
 
 
 
