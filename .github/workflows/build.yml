@@ -30,7 +30,7 @@ jobs:
           VER:  ${{ github.run_number }}        
         run: |
           echo "Version ${{ env.AppVersion }} - Build Number: ($((${{ env.version }}+$VER)))"
-          echo $((${{ env.version }}+$VER)) > BuildVersion.txt 
+          echo "BuildVersion=$((${{ env.version }}+$VER))"" > BuildVersion.txt 
           git config --global user.name 'maurodevitopix4d'
           git config --global user.email 'mauro.devito@pix4d.com'          
           git add BuildVersion.txt
