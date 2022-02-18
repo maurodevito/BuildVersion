@@ -1,4 +1,4 @@
-row 0
+// This is just a file for testing changes -> commit -> push
 row 1
 row 2 on branch 1
 row 3 (branch2)
