@@ -8,6 +8,8 @@ on: # Controls when the workflow will run
 jobs:
   file_contents:
     runs-on: ubuntu-latest
+
+    if: ${{ env.ManualBuildVersion }} >= ${{ env.AutomaticBuildVersion }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -17,8 +19,6 @@ jobs:
         id: step_a
         run: cat ManualVersion.txt >> $GITHUB_ENV 
 
-
-      if: ${{ env.ManualBuildVersion }} >= ${{ env.AutomaticBuildVersion }}
       - name: Write new version on BuildVersion.txt from last manual
         id: step_inc_a
         run: |
@@ -27,7 +27,17 @@ jobs:
           echo "AutomaticBuildVersion=$((${{ env.ManualBuildVersion }}+1))"
           echo "ManualBuildVersion=${{ env.ManualBuildVersion }}"          
 
-      if: ${{ env.ManualBuildVersion }} < ${{ env.AutomaticBuildVersion }}
+
+    if: ${{ env.ManualBuildVersion }} < ${{ env.AutomaticBuildVersion }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+        # ManualVersion = Last Manual_Build_Version set manually (eg: TestFlight build) and/or Initial_Offset
+      - name: Read ManualVersion from file
+        id: step_a
+        run: cat ManualVersion.txt >> $GITHUB_ENV 
+
       - name: Write new version on BuildVersion.txt from last automatic
         id: step_inc_b
         run: |
