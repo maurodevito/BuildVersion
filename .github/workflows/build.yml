@@ -14,11 +14,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-        # ManualVersion = Last manual version has been set manually (eg: TestFlight build) and/or initial offset
+        # ManualVersion = Last Manual_Build_Version set manually (eg: TestFlight build) and/or Initial_Offset
       - name: Read ManualVersion from file
         id: step_a
         run: cat ManualVersion.txt >> $GITHUB_ENV 
 
+        # BuildVersion = New BuildVersion user as Build number
       - name: Write new version on BuildVersion.txt
         id: step_b
         env:  
@@ -29,5 +30,5 @@ jobs:
           git config --global user.name 'maurodevitopix4d'
           git config --global user.email 'mauro.devito@pix4d.com'          
           git add BuildVersion.txt
-          git commit -am "Version ${{ github.run_number }} added on BuildVersion.txt"
+          git commit -am "Version X.XXX - Build Number: (${{ $((${{ env.version }}+$VER)) }})"
           git push
