@@ -1,13 +1,20 @@
 name: "Increment build number"
 
-on: # Controls when the workflow will run
-  push:
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on any pull request merge on any branch
+  pull_request:
     branches:
-      - master
+      - '**'
+    types: [closed]
+
+  # Allow us to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
-  file_contents:
+  build:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
