@@ -1,13 +1,15 @@
-name: "Read file contents"
+name: "Increment build number"
 
 on: # Controls when the workflow will run
-  push:
+  pull_request:
     branches:
-      - master
+      - '**'
+    types: [closed]
 
 jobs:
   file_contents:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
