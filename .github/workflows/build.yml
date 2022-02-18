@@ -20,10 +20,14 @@ jobs:
         id: step_b
         run: |
           echo "Version ${{ env.AppVersion }} - ($((${{ env.BuildVersion }}+1)))"
-          echo "AppVersion=${{ env.AppVersion }}"
-          echo "BuildVersion=$((${{ env.BuildVersion }}+1))"
+          echo "AppVersion=${{ env.AppVersion }}" > ConfigVersion.txt
+          echo "BuildVersion=$((${{ env.BuildVersion }}+1))" >> ConfigVersion.txt
   
-
+          git config --global user.name 'maurodevitopix4d'
+          git config --global user.email 'mauro.devito@pix4d.com'          
+          git add ConfigVersion.txt
+          git commit -am "Ver. ${{ env.AppVersion }} - ($((${{ env.BuildVersion }}+1)))"
+          git push
 
 #    if: ${{ env.ManualBuildVersion }} < ${{ env.AutomaticBuildVersion }}
 #    steps:
