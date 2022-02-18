@@ -18,28 +18,41 @@ jobs:
         run: cat ManualVersion.txt >> $GITHUB_ENV 
 
 
-#        # BuildVersion = the last BuildVersion automatically calculated (considering the ManualVersion off-set)
-#      - name: Read BuildVersion from file
-#        id: step_a
-#        run: cat BuildVersion.txt >> $GITHUB_ENV 
-
-        # BuildVersion = New BuildVersion user as Build number
-      - name: Write new version on BuildVersion.txt
-        id: step_b
+      if: ${{ env.ManualBuildVersion }} >= ${{ env.AutomaticBuildVersion }}
+      - name: Write new version on BuildVersion.txt from last manual
+        id: step_inc_a
         env:  
           VER:  ${{ github.run_number }}        
         run: |
-          echo "Version ${{ env.AppVersion }} - ($((${{ env.ManualBuildVersion }}+$VER)))"
+          echo "Version ${{ env.AppVersion }} - ($((${{ env.ManualBuildVersion }}+1)))"
           echo "AppVersion=${{ env.AppVersion }}"
-          echo "AutomaticBuildVersion=$((${{ env.ManualBuildVersion }}+$VER))"
+          echo "AutomaticBuildVersion=$((${{ env.ManualBuildVersion }}+1))"
           echo "ManualBuildVersion=${{ env.ManualBuildVersion }}"
           
 
-#echo "ManualBuildVersion=${{ env.ManualBuildVersion }}""
+      if: ${{ env.ManualBuildVersion }} < ${{ env.AutomaticBuildVersion }}
+      - name: Write new version on BuildVersion.txt from last automatic
+        id: step_inc_b
+        env:  
+          VER:  ${{ github.run_number }}        
+        run: |
+          echo "Version ${{ env.AppVersion }} - ($((${{ env.AutomaticBuildVersion }}+1)))"
+          echo "AppVersion=${{ env.AppVersion }}"
+          echo "AutomaticBuildVersion=$((${{ env.AutomaticBuildVersion }}+1))"
+          echo "ManualBuildVersion=${{ env.ManualBuildVersion }}"
 
-#AppVersion=1.12.0
-#AutomaticBuildVersion=20
-#ManualBuildVersion=20
+
+
+#      - name: Write new version on BuildVersion.txt from last manual
+#        id: step_inc_a
+#        env:  
+#          VER:  ${{ github.run_number }}        
+#        run: |
+#          echo "Version ${{ env.AppVersion }} - ($((${{ env.ManualBuildVersion }}+$VER)))"
+#          echo "AppVersion=${{ env.AppVersion }}"
+#          echo "AutomaticBuildVersion=$((${{ env.ManualBuildVersion }}+$VER))"
+#          echo "ManualBuildVersion=${{ env.ManualBuildVersion }}"
+
 #
 #          
 #          echo "BuildVersion=$((${{ env.version }}+$VER))"" > BuildVersion.txt 
