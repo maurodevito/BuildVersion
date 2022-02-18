@@ -30,7 +30,7 @@ jobs:
           VER:  ${{ github.run_number }}        
         run: |
           echo "Version ${{ env.AppVersion }} - ($((${{ env.ManualBuildVersion }}+$VER)))"
- 
+          echo "AppVersion=${{ env.AppVersion }}
  
  #
  
