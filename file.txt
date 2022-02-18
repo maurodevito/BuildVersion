@@ -6,3 +6,4 @@ row 4 (branch3)
 row 5 new commit from master
 row 6 master
 row 7 - branch 1
+	row 8 branch 2
