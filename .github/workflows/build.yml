@@ -3,10 +3,7 @@ name: "Increment build number"
 # Controls when the workflow will run
 on:
   # Triggers the workflow on any pull request merge on any branch
-  pull_request:
-    branches:
-      - '**'
-    types: [closed]
+  push:
 
   # Allow us to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -14,7 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
+#    if: github.event.pull_request.merged == true
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -26,12 +23,17 @@ jobs:
       - name: Write new version on ConfigVersion.xcconfig
         id: step_b
         run: |
-          echo "Version ${{ env.AppVersion }} - ($((${{ env.BuildVersion }}+1)))"
-          echo "AppVersion=${{ env.AppVersion }}" > ConfigVersion.xcconfig
-          echo "BuildVersion=$((${{ env.BuildVersion }}+1))" >> ConfigVersion.xcconfig
+          echo "Version ${{ env.MARKETING_VERSION }} - ($((${{ env.CURRENT_PROJECT_VERSION }}+1)))"
+          echo "MARKETING_VERSION=${{ env.MARKETING_VERSION }}" > ConfigVersion.xcconfig
+          echo "CURRENT_PROJECT_VERSION=$((${{ env.CURRENT_PROJECT_VERSION }}+1))" >> ConfigVersion.xcconfig
   
+          BRANCH=(git rev-parse --abbrev-ref HEAD | cut -c1-7)
+          echo $BRANCH
+
           git config --global user.name 'maurodevitopix4d'
           git config --global user.email 'mauro.devito@pix4d.com'          
           git add ConfigVersion.xcconfig
-          git commit -am "Ver. ${{ env.AppVersion }} - ($((${{ env.BuildVersion }}+1)))"
+          git commit -am "Ver. ${{ env.MARKETING_VERSION }} - ($((${{ env.CURRENT_PROJECT_VERSION }}+1)))"
           git push
+
+

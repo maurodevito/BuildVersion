@@ -12,3 +12,5 @@ qqqqqqqq
 new row
 x
 change 1 - branch 1
+
+          # git rev-parse --abbrev-ref HEAD | cut -c1-7
