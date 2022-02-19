@@ -3,10 +3,14 @@ name: "Increment build number"
 # Controls when the workflow will run
 on:
   # Triggers the workflow on any pull request merge on any branch
-  pull_request:
+#  pull_request:
+#    branches:
+#      - '**'
+#    types: [closed]
+
+  push:
     branches:
-      - '**'
-    types: [closed]
+      - master
 
   # Allow us to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -21,17 +25,17 @@ jobs:
 
       - name: Read ConfigVersion from file
         id: step_a
-        run: cat ConfigVersion.txt >> $GITHUB_ENV 
+        run: cat ConfigVersion.xcconfig >> $GITHUB_ENV 
 
-      - name: Write new version on ConfigVersion.txt
+      - name: Write new version on ConfigVersion.xcconfig
         id: step_b
         run: |
           echo "Version ${{ env.AppVersion }} - ($((${{ env.BuildVersion }}+1)))"
-          echo "AppVersion=${{ env.AppVersion }}" > ConfigVersion.txt
-          echo "BuildVersion=$((${{ env.BuildVersion }}+1))" >> ConfigVersion.txt
+          echo "AppVersion=${{ env.AppVersion }}" > ConfigVersion.xcconfig
+          echo "BuildVersion=$((${{ env.BuildVersion }}+1))" >> ConfigVersion.xcconfig
   
           git config --global user.name 'maurodevitopix4d'
           git config --global user.email 'mauro.devito@pix4d.com'          
-          git add ConfigVersion.txt
+          git add ConfigVersion.xcconfig
           git commit -am "Ver. ${{ env.AppVersion }} - ($((${{ env.BuildVersion }}+1)))"
           git push
