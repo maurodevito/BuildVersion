@@ -34,3 +34,4 @@ fi
 	    BRANCH=(git rev-parse --abbrev-ref HEAD | cut -c1-7)
           echo $BRANCH
 		  x
+		  x
