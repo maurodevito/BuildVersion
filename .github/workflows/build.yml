@@ -1,6 +1,8 @@
 name: "Increment build number"
 
 # Controls when the workflow will run
+on:
+  # Triggers the workflow on any pull request merge on any branch
   pull_request:
     branches:
       - '**'
