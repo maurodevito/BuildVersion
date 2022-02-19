@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 #    if: github.event.pull_request.merged == true
     env:
-      MESSAGE: "(git rev-parse --abbrev-ref HEAD | cut -c1-7) pippo"
+      MESSAGE: (git rev-parse --abbrev-ref HEAD | cut -c1-7) pippo
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
