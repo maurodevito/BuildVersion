@@ -1,45 +1,41 @@
-// This is just a file for testing changes -> commit -> push
-row 1
-row 2 on branch 1
-row 3 (branch2)
-row 4 (branch3)
-row 5 new commit from master
-row 6 master
-row 7 - branch 1
-	row 8 branch 2
-yyyyyyyy
-qqqqqqqq
-new row
-x
-change 1 - branch 1
+name: "Increment build number"
 
-          # git rev-parse --abbrev-ref HEAD | cut -c1-7
-
-NAME=$(git branch | grep '*' | sed 's/* //') 
-DESCRIPTION=$(git config branch."$NAME".description)
-
-echo "$NAME"': '$(cat "$1") > "$1"
-if [ -n "$DESCRIPTION" ] 
-then
-   echo "" >> "$1"
-   echo $DESCRIPTION >> "$1"
-fi 
-
-
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on any pull request merge on any branch
   pull_request:
     branches:
       - '**'
     types: [closed]
 
-	    BRANCH=(git rev-parse --abbrev-ref HEAD | cut -c1-7)
-          echo $BRANCH
-		  x
-		  xx
+  # Allow us to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
-		  (git rev-parse --abbrev-ref HEAD | cut -c1-7)
-		  BRANCH
-		  xx
-		  yy
-		  zz
-		  1
-		  2
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get Branch name
+        run: echo '::set-output name=BRANCH::$(git rev-parse --abbrev-ref HEAD | cut -c1-7)'
+        id: get_branch_name
+
+      - name: Read ConfigVersion from file
+        id: step_a
+        run: cat ConfigVersion.xcconfig >> $GITHUB_ENV 
+
+      - name: Write new version on ConfigVersion.xcconfig
+        id: step_b
+        run: |
+          echo "Version ${{ env.MARKETING_VERSION }} - ($((${{ env.CURRENT_PROJECT_VERSION }}+1)))"
+          echo "MARKETING_VERSION=${{ env.MARKETING_VERSION }}" > ConfigVersion.xcconfig
+          echo "CURRENT_PROJECT_VERSION=$((${{ env.CURRENT_PROJECT_VERSION }}+1))" >> ConfigVersion.xcconfig
+
+          git config --global user.name 'maurodevitopix4d'
+          git config --global user.email 'mauro.devito@pix4d.com'          
+          git add ConfigVersion.xcconfig
+          git commit -am "${{ steps.get_branch_name.outputs.BRANCH }} Ver. ${{ env.MARKETING_VERSION }} - ($((${{ env.CURRENT_PROJECT_VERSION }}+1)))"
+          git push
