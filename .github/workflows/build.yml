@@ -12,11 +12,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
 #    if: github.event.pull_request.merged == true
-    env:
-      MESSAGE: (git rev-parse --abbrev-ref HEAD | cut -c1-7) pippo
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Set selected color
+        run: echo '::set-output name=SELECTED_COLOR::green'
+        id: random-color-generator
 
       - name: Read ConfigVersion from file
         id: step_a
@@ -28,8 +30,8 @@ jobs:
           echo "Version ${{ env.MARKETING_VERSION }} - ($((${{ env.CURRENT_PROJECT_VERSION }}+1)))"
           echo "MARKETING_VERSION=${{ env.MARKETING_VERSION }}" > ConfigVersion.xcconfig
           echo "CURRENT_PROJECT_VERSION=$((${{ env.CURRENT_PROJECT_VERSION }}+1))" >> ConfigVersion.xcconfig
-          echo $MESSAGE
-
+          
+          echo "$SELECTED_COLOR"
           git config --global user.name 'maurodevitopix4d'
           git config --global user.email 'mauro.devito@pix4d.com'          
           git add ConfigVersion.xcconfig
