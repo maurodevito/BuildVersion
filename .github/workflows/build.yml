@@ -17,11 +17,11 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set selected color
-        run: echo '::set-output name=SELECTED_COLOR::green'
-        id: set_message
+        run: echo '::set-output name=MESSAGE::$(git rev-parse --abbrev-ref HEAD | cut -c1-7))'
+        id: commit_message
 
       - name: Get color
-        run: echo "The selected color is ${{ steps.set_message.outputs.SELECTED_COLOR }}"
+        run: echo "The selected color is ${{ steps.commit_message.outputs.MESSAGE }}"
         id: step_showmsg
 
       - name: Read ConfigVersion from file
@@ -34,9 +34,6 @@ jobs:
           echo "Version ${{ env.MARKETING_VERSION }} - ($((${{ env.CURRENT_PROJECT_VERSION }}+1)))"
           echo "MARKETING_VERSION=${{ env.MARKETING_VERSION }}" > ConfigVersion.xcconfig
           echo "CURRENT_PROJECT_VERSION=$((${{ env.CURRENT_PROJECT_VERSION }}+1))" >> ConfigVersion.xcconfig
-
-          echo '::set-output name=SELECTED_COLOR::green'
-          echo "$( SELECTED_COLOR )"
 
           git config --global user.name 'maurodevitopix4d'
           git config --global user.email 'mauro.devito@pix4d.com'          
