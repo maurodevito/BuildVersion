@@ -20,6 +20,10 @@ jobs:
         run: echo '::set-output name=BRANCH::$(git rev-parse --abbrev-ref HEAD | cut -c1-7))'
         id: get_branch_name
 
+      - name: Show Branch name
+        run: echo "${{ steps.get_branch_name.outputs.BRANCH }}"
+        id: show_branch_name
+
       - name: Read ConfigVersion from file
         id: step_a
         run: cat ConfigVersion.xcconfig >> $GITHUB_ENV 
