@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Get Branch name
-        run: echo '::set-output name=BRANCH::$(git rev-parse --abbrev-ref HEAD | cut -c1-7))'
+        run: echo '::set-output name=BRANCH::$(git rev-parse --abbrev-ref HEAD | cut -c1-7)'
         id: get_branch_name
 
       - name: Show Branch name
