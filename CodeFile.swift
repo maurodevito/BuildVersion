@@ -14,3 +14,22 @@ x
 change 1 - branch 1
 
           # git rev-parse --abbrev-ref HEAD | cut -c1-7
+
+NAME=$(git branch | grep '*' | sed 's/* //') 
+DESCRIPTION=$(git config branch."$NAME".description)
+
+echo "$NAME"': '$(cat "$1") > "$1"
+if [ -n "$DESCRIPTION" ] 
+then
+   echo "" >> "$1"
+   echo $DESCRIPTION >> "$1"
+fi 
+
+
+  pull_request:
+    branches:
+      - '**'
+    types: [closed]
+
+	    BRANCH=(git rev-parse --abbrev-ref HEAD | cut -c1-7)
+          echo $BRANCH
