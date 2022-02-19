@@ -8,17 +8,13 @@ on:
 #      - '**'
 #    types: [closed]
 
-  push:
-    branches:
-      - master
-
   # Allow us to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-#    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
