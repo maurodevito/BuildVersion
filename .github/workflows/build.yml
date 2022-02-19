@@ -28,7 +28,6 @@ jobs:
           echo "CURRENT_PROJECT_VERSION=$((${{ env.CURRENT_PROJECT_VERSION }}+1))" >> ConfigVersion.xcconfig
 
           echo '::set-output name=SELECTED_COLOR::green'
-          echo ${{ SELECTED_COLOR }}
 
           git config --global user.name 'maurodevitopix4d'
           git config --global user.email 'mauro.devito@pix4d.com'          
