@@ -27,6 +27,9 @@ jobs:
           echo "MARKETING_VERSION=${{ env.MARKETING_VERSION }}" > ConfigVersion.xcconfig
           echo "CURRENT_PROJECT_VERSION=$((${{ env.CURRENT_PROJECT_VERSION }}+1))" >> ConfigVersion.xcconfig
 
+	        BRANCH=(git rev-parse --abbrev-ref HEAD | cut -c1-7)
+          echo $BRANCH
+
           git config --global user.name 'maurodevitopix4d'
           git config --global user.email 'mauro.devito@pix4d.com'          
           git add ConfigVersion.xcconfig
