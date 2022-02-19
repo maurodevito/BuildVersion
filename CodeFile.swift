@@ -39,3 +39,7 @@ fi
 		  (git rev-parse --abbrev-ref HEAD | cut -c1-7)
 		  BRANCH
 		  xx
+		  yy
+		  zz
+		  1
+		  2
