@@ -16,6 +16,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set selected color
+        run: echo '::set-output name=SELECTED_COLOR::green'
+        id: set_message
+
+      - name: Get color
+        run: echo "The selected color is ${{ steps.set_message.outputs.SELECTED_COLOR }}"
+        id: step_showmsg
+
       - name: Read ConfigVersion from file
         id: step_a
         run: cat ConfigVersion.xcconfig >> $GITHUB_ENV 
