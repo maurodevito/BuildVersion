@@ -40,4 +40,4 @@ jobs:
           git commit -am "${{ steps.get_branch_name.outputs.BRANCH }} Ver. ${{ env.MARKETING_VERSION }} - ($((${{ env.CURRENT_PROJECT_VERSION }}+1)))"
           git push
 # comment		  
-**
+***
