@@ -16,8 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ADMIN_TOKEN_IOS }}
+
+      - name: Configure Git User
+        run: |
+          git config --global user.name 'maurodevitopix4d'
+          git config --global user.email 'mauro.devito@pix4d.com'          
 
       - name: Get Branch name
         run: echo '::set-output name=BRANCH::$(git log -2 --oneline | grep "Merge pull request" | cut -d'/' -f 2 | cut -d'-' -f 1)-$(git log -2 --oneline | grep "Merge pull request" | cut -d'/' -f 2 | cut -d'-' -f 2)'
