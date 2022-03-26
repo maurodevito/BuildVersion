@@ -1,4 +1,5 @@
-# BuildVersion - Increment Build Version automatically using GitHub Actions
+# BuildVersion - Increment Build Version automatically 
+# GitHub Actions
 
 In the file ConfigVersion.txt there are two rows:
 AppVersion=1.12.0
