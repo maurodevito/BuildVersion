@@ -1,7 +1,6 @@
-# BuildVersion
+# BuildVersion - Increment Build Version automatically
 
 In the file ConfigVersion.txt there are two rows:
-
 AppVersion=1.12.0
 BuildVersion=300
 
