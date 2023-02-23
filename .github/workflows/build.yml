@@ -22,8 +22,8 @@ jobs:
 
       - name: Configure Git User
         run: |
-          git config --global user.name 'maurodevitopix4d'
-          git config --global user.email 'mauro.devito@pix4d.com'          
+          git config --global user.name 'maurodevito'
+          git config --global user.email 'mauro.devito@gmail.com'          
 
       - name: Get Branch name
         run: echo '::set-output name=BRANCH::$(git log -2 --oneline | grep "Merge pull request" | cut -d'/' -f 2 | cut -d'-' -f 1)-$(git log -2 --oneline | grep "Merge pull request" | cut -d'/' -f 2 | cut -d'-' -f 2)'
